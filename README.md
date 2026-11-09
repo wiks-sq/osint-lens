@@ -13,6 +13,7 @@
   <a href="#what-it-finds">What it finds</a> ·
   <a href="#ai-analysis">AI</a> ·
   <a href="#mcp-servers">MCP</a> ·
+  <a href="docs/FEATURES.md">Feature guide</a> ·
   <a href="docs/HOW_IT_WORKS.md">How it works</a> ·
   <a href="docs/PRIVACY.md">Privacy</a>
 </p>
@@ -135,7 +136,7 @@ npm install && npm run test:e2e   # loads the extension into Chrome and scans a 
 npm run package     # dist/osint-lens-<version>.zip
 ```
 
-There is no bundler and no runtime dependencies. The code is plain ES modules that Chrome loads directly. `src/core` is pure, testable analysis. `src/intel` holds the online sources, `src/mcp` the MCP client, `src/ai` the providers and agent, `src/background` the service worker, and `src/ui` the side panel and settings. The architecture is described in [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md), and [docs/RESEARCH.md](docs/RESEARCH.md) explains why each feature exists. Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
+There is no bundler and no runtime dependencies. The code is plain ES modules that Chrome loads directly. `src/core` is pure, testable analysis. `src/intel` holds the online sources, `src/mcp` the MCP client, `src/ai` the providers and agent, `src/background` the service worker, and `src/ui` the side panel and settings. Every feature, with security notes, is described in [docs/FEATURES.md](docs/FEATURES.md); the architecture is in [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md), and [docs/RESEARCH.md](docs/RESEARCH.md) explains why each feature exists. Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Responsible use
 
