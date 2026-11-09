@@ -204,7 +204,8 @@ All page and model content is inserted as text, never as HTML. Links are limited
 
 | Permission | Why |
 |---|---|
-| `activeTab` | Read the tab you invoke the extension on |
+| `activeTab` | Read the tab you invoke the extension on (clicking the icon, the shortcut or a context-menu item) |
+| `tabs` | See each tab's URL and title, so the panel knows which site you're on and can offer *Allow on this site*. Without it Chrome hides the URL until access is granted. |
 | `scripting` | Inject the collector, probe, fetcher and highlighter |
 | `storage`, `unlimitedStorage` | Settings, progress, and the local report database |
 | `sidePanel` | The UI |

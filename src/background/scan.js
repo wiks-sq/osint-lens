@@ -12,7 +12,7 @@ import { setTabState } from "./state.js";
 
 export class NoAccessError extends Error {
   constructor(url) {
-    super("The extension doesn't have access to this site yet.");
+    super(url ? "The extension doesn't have access to this site yet." : "The extension can't see this tab's address yet, so it can't read the page.");
     this.name = "NoAccessError";
     this.code = "no_access";
     this.url = url;
@@ -74,7 +74,9 @@ export async function fetchMany(tabId, origin, reqs) {
 export async function scanTab(tabId) {
   const settings = await getSettings();
   const tab = await chrome.tabs.get(tabId);
-  if (!tab.url || RESTRICTED.test(tab.url)) throw new Error("Chrome doesn't let extensions read this page (browser pages, the Web Store and the built-in PDF viewer are off-limits). Open a regular website.");
+  // Without access to the tab, Chrome hides its URL from the extension.
+  if (!tab.url) throw new NoAccessError(null);
+  if (RESTRICTED.test(tab.url)) throw new Error("Chrome doesn't let extensions read this page (browser pages, the Web Store and the built-in PDF viewer are off-limits). Open a regular website.");
   if (/^file:/i.test(tab.url) && !(await chrome.extension.isAllowedFileSchemeAccess())) throw new Error('To scan local files, enable "Allow access to file URLs" for this extension on chrome://extensions.');
 
   await setTabState(tabId, { status: "running", step: "Reading the page", error: null, errorCode: null });
