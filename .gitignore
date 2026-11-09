@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.v1-backup/
+*.log
+.DS_Store
+Thumbs.db
+mcp-servers.json

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /backup/
+Disallow: /staging-preview/
+Sitemap: http://127.0.0.1:8790/sitemap.xml

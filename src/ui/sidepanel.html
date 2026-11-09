@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OSINT Lens</title>
+  <link rel="stylesheet" href="ui.css">
+  <script type="module" src="sidepanel.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><img src="../../icons/icon48.png" alt=""><span>OSINT Lens</span></div>
+    <div class="spacer"></div>
+    <button class="btn primary" id="scan-btn" type="button" title="Scan the current page (Alt+Shift+S)">Scan page</button>
+    <button class="btn ghost" id="lookup-btn" type="button" title="Investigate any value">Lookup</button>
+    <button class="btn ghost" id="history-btn" type="button" title="Previous scans">History</button>
+    <button class="btn ghost" id="popout-btn" type="button" title="Open in a full tab">⧉</button>
+    <button class="btn ghost" id="settings-btn" type="button" title="Settings">⚙</button>
+  </header>
+  <nav class="tabbar hidden" id="tabbar" aria-label="Report sections"></nav>
+  <main id="main">
+    <div id="live"></div>
+    <div id="content"></div>
+  </main>
+</body>
+</html>

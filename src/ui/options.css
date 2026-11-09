@@ -1,0 +1,20 @@
+.layout { display: grid; grid-template-columns: 200px minmax(0, 860px); gap: 16px; padding: 16px; justify-content: center; }
+.side-nav { position: sticky; top: 64px; align-self: start; display: flex; flex-direction: column; gap: 2px; }
+.side-nav a { padding: 6px 10px; border-radius: 6px; color: var(--muted); font-weight: 600; }
+.side-nav a:hover { background: var(--panel-2); color: var(--text); text-decoration: none; }
+#form { display: flex; flex-direction: column; gap: 14px; }
+#form > .card { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 64px; }
+#form h2 { font-size: 15px; }
+.lead { color: var(--muted); margin: -6px 0 0; }
+.provider-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.server { border: 1px solid var(--line); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.server.disabled { opacity: 0.65; }
+.server .head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.headers-row { display: grid; grid-template-columns: 1fr 2fr auto; gap: 6px; }
+.tools-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 4px 12px; max-height: 300px; overflow: auto; }
+.inline-code { font-family: var(--mono); font-size: 12px; background: var(--panel-2); padding: 1px 5px; border-radius: 4px; }
+pre.cmd { background: var(--panel-2); border-radius: 6px; padding: 8px 10px; margin: 0; font-size: 12px; overflow: auto; white-space: pre-wrap; }
+@media (max-width: 720px) {
+  .layout { grid-template-columns: 1fr; }
+  .side-nav { position: static; flex-direction: row; flex-wrap: wrap; }
+}

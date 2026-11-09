@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to OSINT Lens</title>
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    main { max-width: 760px; margin: 0 auto; padding: 28px 18px 60px; gap: 14px; }
+    h1 { font-size: 22px; display: flex; gap: 10px; align-items: center; }
+    h1 img { width: 36px; height: 36px; }
+    h2 { font-size: 15px; margin-bottom: 4px; }
+    ol, ul { margin: 6px 0; padding-left: 1.3em; }
+    li { margin: 3px 0; }
+    kbd { font-family: var(--mono); font-size: 11.5px; border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--panel); }
+    code { background: var(--panel-2); padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><img src="../../icons/icon128.png" alt="">Welcome to OSINT Lens</h1>
+    <p class="muted">An investigation workbench for web pages: identifiers, infrastructure, technologies, exposed data and phishing triage, with local AI and any MCP tools you connect.</p>
+
+    <section class="card">
+      <h2>1. Pin it and open the side panel</h2>
+      <ol>
+        <li>Click the puzzle-piece icon in Chrome's toolbar and pin <b>OSINT Lens</b>.</li>
+        <li>On any web page, click the icon (or press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>O</kbd>). The side panel opens and stays open while you browse.</li>
+        <li>Press <b>Scan page</b> (<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>).</li>
+      </ol>
+      <p class="small muted">Clicking the toolbar icon gives the extension one-time access to that tab. To scan any tab from the side panel without clicking the icon each time, allow access to all sites in Settings → Privacy &amp; data.</p>
+    </section>
+
+    <section class="card">
+      <h2>2. Investigate</h2>
+      <ul>
+        <li><b>Indicators</b>: emails, phones, social profiles, wallets, tracking and ad IDs, verification tokens, IPs, coordinates… each with pivot links.</li>
+        <li><b>Online lookups</b>: DNS, registration (RDAP), hosting/ASN, open ports, subdomains from certificate logs, archive history and earlier public scans.</li>
+        <li><b>Files</b>: GPS, camera and author metadata from the page's photos and documents.</li>
+        <li><b>Evidence</b>: screenshots and full-page MHTML archives with SHA-256 hashes.</li>
+        <li><b>History</b>: every scan is kept locally; shared identifiers link sites across your investigations automatically.</li>
+        <li>Right-click any selected text, link or image → <b>Investigate</b>.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>3. Add AI (optional)</h2>
+      <p>Install <a href="https://ollama.com" target="_blank" rel="noopener noreferrer">Ollama</a>, pull a model that supports tool calling and open <a href="options.html#ai">Settings → AI</a>:</p>
+      <pre class="result-pre">ollama pull qwen3:8b</pre>
+      <p class="small muted">Everything stays on your computer with Ollama. OpenAI-compatible servers (LM Studio, llama.cpp, vLLM…) and Anthropic are also supported.</p>
+    </section>
+
+    <section class="card">
+      <h2>4. Connect MCP servers (optional)</h2>
+      <p>Any <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer">Model Context Protocol</a> server can be added in <a href="options.html#mcp">Settings → MCP servers</a>: remote servers by URL, local stdio servers through the bundled bridge:</p>
+      <pre class="result-pre">node tools/mcp-bridge.mjs -- npx -y @modelcontextprotocol/server-everything</pre>
+      <p class="small muted">Run tools yourself from the MCP tab, save them as recipes, or let the AI call them (with your approval).</p>
+    </section>
+
+    <section class="card">
+      <h2>Use it responsibly</h2>
+      <p class="small">OSINT Lens reads what a page already shows you and queries public sources. Investigate only what you're entitled to, respect the terms of the services you query, and treat heuristic results as leads to verify. See <code>docs/PRIVACY.md</code> for exactly what is sent where.</p>
+    </section>
+  </main>
+</body>
+</html>

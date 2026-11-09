@@ -1,0 +1,76 @@
+{
+  "manifest_version": 3,
+  "name": "OSINT Lens",
+  "version": "2.0.0",
+  "description": "Webpage OSINT: identifiers, infrastructure, trackers, metadata, exposures and phishing triage, with local AI (Ollama) and MCP tools.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "unlimitedStorage",
+    "sidePanel",
+    "contextMenus",
+    "pageCapture"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://cloudflare-dns.com/*",
+    "https://dns.google/*",
+    "https://data.iana.org/*",
+    "https://rdap.org/*",
+    "https://rdap.arin.net/*",
+    "https://crt.sh/*",
+    "https://api.certspotter.com/*",
+    "https://web.archive.org/*",
+    "https://internetdb.shodan.io/*",
+    "https://urlscan.io/*",
+    "https://www.googletagmanager.com/*",
+    "https://api.anthropic.com/*"
+  ],
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "src/ui/sidepanel.html"
+  },
+  "action": {
+    "default_title": "OSINT Lens",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+O"
+      },
+      "description": "Open OSINT Lens"
+    },
+    "scan-page": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Scan the current page"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "src/ui/options.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  }
+}
