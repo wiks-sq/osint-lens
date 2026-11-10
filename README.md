@@ -142,6 +142,10 @@ There is no bundler and no runtime dependencies. The code is plain ES modules th
 
 OSINT Lens reads what a page already shows any visitor and queries public sources. It does not probe for hidden paths, brute-force anything or bypass access controls. Investigate only what you are entitled to, respect the terms of the services you query, follow the law where you are, and treat heuristic results as leads to verify, not conclusions.
 
+## Support
+
+OSINT Lens is free and open source. If it saves you time, you can [buy me a coffee](https://buymeacoffee.com/marginnotes).
+
 ## License
 
 [MIT](LICENSE)

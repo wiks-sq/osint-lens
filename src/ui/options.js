@@ -298,7 +298,8 @@ function aboutSection() {
   const v = chrome.runtime.getManifest().version;
   return card("about", "About", null,
     h("p.small", `OSINT Lens ${v}. Open source (MIT). `, h("a", { href: chrome.runtime.getURL("src/ui/welcome.html"), target: "_blank" }, "Getting started guide")),
-    h("p.small.muted", "Use it on pages you're entitled to investigate and respect the terms of the services it queries. Heuristic findings are leads, not conclusions.")
+    h("p.small.muted", "Use it on pages you're entitled to investigate and respect the terms of the services it queries. Heuristic findings are leads, not conclusions."),
+    h("p.tiny.faint", "Find it useful? ", h("a", { href: "https://buymeacoffee.com/marginnotes", target: "_blank", rel: "noopener noreferrer" }, "Buy the author a coffee"), ".")
   );
 }
 
