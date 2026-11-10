@@ -9,6 +9,12 @@
 </p>
 
 <p align="center">
+  <a href="https://buymeacoffee.com/marginnotes" target="_blank">
+    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee">
+  </a>
+</p>
+
+<p align="center">
   <a href="#install">Install</a> ·
   <a href="#what-it-finds">What it finds</a> ·
   <a href="#ai-analysis">AI</a> ·
