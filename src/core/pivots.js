@@ -6,6 +6,8 @@
 // {lat} {lon} coordinates, {mmh3} {md5} {sha256} favicon hashes, {n} ASN number,
 // {b64:...} base64 of the inner template (FOFA queries).
 
+import { safeDecode } from "./util.js";
+
 const G = (q) => ({ name: "Google", url: `https://www.google.com/search?q=${q}` });
 const SEARCH = [
   G("%22{q}%22"),
@@ -206,7 +208,7 @@ export function expand(template, ind) {
     handle: encodeURIComponent(String(extra.handle || value).replace(/^@/, "").split("@")[0])
   };
   return template
-    .replace(/\{b64:((?:[^{}]|\{\w+\})*)\}/g, (_, inner) => encodeURIComponent(b64(inner.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? decodeURIComponent(String(vars[k])) : m)))))
+    .replace(/\{b64:((?:[^{}]|\{\w+\})*)\}/g, (_, inner) => encodeURIComponent(b64(inner.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? safeDecode(vars[k]) : m)))))
     .replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 }
 

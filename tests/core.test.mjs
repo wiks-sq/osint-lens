@@ -278,3 +278,15 @@ test("CSV export neutralises spreadsheet formulas", () => {
   const csv = toCsv({ page: { url: "u" }, createdAt: "t", indicators: [{ type: "handle", value: "=cmd|' /C calc'!A0", sources: [], confidence: "low", count: 1 }] });
   assert.ok(csv.includes(`"'=cmd`));
 });
+
+test("malformed percent-escapes in URLs don't abort the scan", () => {
+  // A page linking to "/file%E0.pdf", "mailto:%" or "/profile%" must not throw "URI malformed".
+  const links = analyzeLinks([{ href: "https://site.com/report%E0.pdf" }, { href: "mailto:%" }, { href: "tel:%2B358%" }, { href: "https://twitter.com/user%" }], "https://site.com/");
+  assert.equal(links.find((l) => /report/.test(l.url)).ext, "pdf");
+  const b = new IndicatorBag();
+  for (const l of links) addUrl(b, l.url);
+  assert.equal(matchSocial("https://twitter.com/jack%"), null);
+  assert.equal(extOf("/x/%zz.docx"), "docx");
+  const r = buildReport({ url: "https://site.com/a%", origin: "https://site.com", title: "t", html: "", text: "", meta: [], linkTags: [], links: [{ href: "https://site.com/%E0" }, { href: "mailto:%" }], scripts: [], jsonld: [], styles: [], iframes: [], images: [], forms: [], comments: [], resources: [], cookies: [], storage: {}, flags: {}, favicons: [] }, {}, {});
+  assert.ok(r.links.length >= 1);
+});

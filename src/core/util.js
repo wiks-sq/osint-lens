@@ -25,6 +25,15 @@ export function contextOf(text, index, length, pad = 40) {
 /** Escape a string for use inside a RegExp. */
 export const escapeRe = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+/** decodeURIComponent that returns the input unchanged on malformed escapes (e.g. a lone "%"). */
+export function safeDecode(s) {
+  try {
+    return decodeURIComponent(String(s ?? ""));
+  } catch {
+    return String(s ?? "");
+  }
+}
+
 /** Parse a URL without throwing. */
 export function safeUrl(href, base) {
   try {

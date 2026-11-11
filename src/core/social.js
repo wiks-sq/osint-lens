@@ -3,6 +3,8 @@
 // Rule: { platform, host: RegExp on the bare host, path: RegExp on the pathname
 // (group 1 = handle), reserved: paths that aren't profiles }.
 
+import { safeDecode } from "./util.js";
+
 const RESERVED_COMMON = new Set([
   "share", "sharer", "sharer.php", "intent", "home", "login", "signup", "search", "explore", "hashtag", "settings",
   "about", "help", "privacy", "terms", "policies", "legal", "watch", "embed", "plugins", "dialog", "tr", "i", "p",
@@ -92,7 +94,7 @@ export function matchSocial(href) {
   }
   if (!/^https?:$/.test(u.protocol)) return null;
   const host = u.hostname.toLowerCase();
-  const path = decodeURIComponent(u.pathname).replace(/\/+$/, "") || "/";
+  const path = safeDecode(u.pathname).replace(/\/+$/, "") || "/";
   for (const r of RULES) {
     const hm = r.host.exec(host);
     if (!hm) continue;

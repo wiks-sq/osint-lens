@@ -2,7 +2,7 @@
 // crypto wallets, IPs, onion services, coordinates, hashes, CVEs, IBANs,
 // business IDs and @handles. Checksums are applied wherever a format has one.
 
-import { contextOf, safeUrl } from "./util.js";
+import { contextOf, safeUrl, safeDecode } from "./util.js";
 import { isIPv4, isIPv6, isPrivateIPv4, isPrivateIPv6, normalizeHost } from "./domain.js";
 import { iban, finnishBusinessId, base58Check, bech32 } from "./validators.js";
 import { matchSocial } from "./social.js";
@@ -198,12 +198,12 @@ export function addUrl(bag, href, o = {}) {
   if (!u) return null;
   const source = o.source || "link";
   if (u.protocol === "mailto:") {
-    const addr = decodeURIComponent(u.pathname).split(/[,;]/)[0].trim();
+    const addr = safeDecode(u.pathname).split(/[,;]/)[0].trim();
     if (/@/.test(addr)) bag.add("email", cleanEmail(addr), { source: "mailto link", context: o.context });
     return u;
   }
   if (u.protocol === "tel:" || u.protocol === "sms:") {
-    const num = decodeURIComponent(u.pathname).replace(/[^\d+()\-\s.]/g, "").trim();
+    const num = safeDecode(u.pathname).replace(/[^\d+()\-\s.]/g, "").trim();
     if (num.replace(/\D/g, "").length >= 6) bag.add("phone", num, { source: "tel link", context: o.context });
     return u;
   }

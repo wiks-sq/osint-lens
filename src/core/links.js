@@ -4,7 +4,7 @@
 
 import { registrableDomain, normalizeHost, isIP } from "./domain.js";
 import { urlSecrets } from "./exposures.js";
-import { safeUrl } from "./util.js";
+import { safeUrl, safeDecode } from "./util.js";
 
 export const CATEGORIES = {
   document: ["pdf", "doc", "docx", "docm", "odt", "rtf", "txt", "md", "xls", "xlsx", "xlsm", "xlsb", "ods", "csv", "tsv", "ppt", "pptx", "pptm", "odp", "pages", "numbers", "key", "epub", "msg", "eml", "vcf", "ics"],
@@ -24,7 +24,7 @@ export const NOTABLE_CATEGORIES = new Set(["document", "data", "config", "archiv
 
 /** File extension of a URL path ("report.final.PDF" -> "pdf"), or "". */
 export function extOf(pathname) {
-  const last = decodeURIComponent(String(pathname || "")).split("/").pop() || "";
+  const last = safeDecode(pathname || "").split("/").pop() || "";
   if (/^\.[a-z0-9_]+$/i.test(last)) return last.slice(1).toLowerCase(); // ".env", ".git"
   const m = /\.([a-z0-9_]{1,10})$/i.exec(last);
   return m ? m[1].toLowerCase() : "";
